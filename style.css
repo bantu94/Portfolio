@@ -3,7 +3,18 @@
 
 :root {
   --border-color: 0.1rem solid #c7a622;
+  --circle-border-1: 0.5rem dotted #a14b1a;
+  --circle-border-2: 0.5rem dashed #ffbd07;
+  --circle-border-3: 1rem double #9b0e0e;
+  --circle-border-4: .7rem double #fff;
   --background-color: #9b0e0e;
+  --color-white: #fff;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* common style  */
@@ -97,4 +108,101 @@ html {
   height: 100vh;
   background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url(images/back.jpg) center no-repeat;
   background-size: cover;
+}
+
+
+.section__1 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+}
+
+.logo {
+  position: absolute;
+  top: 2rem;
+  left: 5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+}
+
+.circle {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  background-color: red;
+  align-self: center;
+  justify-self: center;
+  opacity: 0.5;
+}
+
+.circle__1 {
+  background: url(images/cover.jpg) center no-repeat;
+  background-size: cover;
+  background-clip: content-box;
+  border: var(--circle-border-1);
+}
+.circle__2 {
+  background: url(images/b1.jpg) center no-repeat;
+  background-size: cover;
+  background-clip: content-box;
+  border: var(--circle-border-2);
+}
+.circle__3 {
+  background: url(images/b2.jpg) center no-repeat;
+  background-size: cover;
+  background-clip: content-box;
+  border: var(--circle-border-3);
+}
+.circle__4 {
+  background: url(images/b3.jpg) center no-repeat;
+  background-size: cover;
+  background-clip: content-box;
+  border: var(--circle-border-4);
+}
+
+
+.main__circle {
+  position: absolute;
+  width: 37rem;
+  height: 37rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.main__circle img {
+  mix-blend-mode: color-dodge;
+}
+
+
+.featured__text {
+  font-size: 2rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+
+  width: 0;
+  word-wrap: break-word;
+  line-height: 1.8;
+  position: sticky;
+  top: 0;
+}
+
+.featured__text-1 {
+  margin: 0 auto 0 10rem;
+}
+
+.featured__text-2 {
+  margin: 0 10rem 0 auto;
 }
