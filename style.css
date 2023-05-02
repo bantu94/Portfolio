@@ -146,6 +146,11 @@ html {
   align-self: center;
   justify-self: center;
   opacity: 0.5;
+
+  top: 0;
+  left: 0;
+  position: relative;
+  transition: left 2s, top 2s;
 }
 
 .circle__1 {
@@ -184,6 +189,11 @@ html {
 
 .main__circle img {
   mix-blend-mode: color-dodge;
+  
+  top: 0;
+  left: 0;
+  position: relative;
+  transition: left 2s, top 2s;
 }
 
 
