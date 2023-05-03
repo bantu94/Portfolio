@@ -241,16 +241,26 @@ html {
   padding: 0.1rem;
 
   transform: rotate(45deg);
+  overflow: hidden;
 
 }
+
 
 .main__btn-content {
   width: 100%;
   height: 100%;
   border: .2rem dotted #e7be08;
   border-radius: 50%;
-
+  /* transform: rotate(40deg); */
+  transition: transform 0.2s, border 0.2s;
 }
+
+.main__btn:hover .main__btn-content {
+  transform: rotate(20deg);
+  border: var(--background-color);
+  transition: transform 0.2s 0.4s, border 0.2s;
+}
+
 
 .main__btn-line {
   position: absolute;
@@ -284,4 +294,28 @@ html {
   font-size: 1.1rem;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.ripple {
+  position: absolute;
+  width: 0;
+  height: 0;
+  background-color: #e7be08;
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  animation: rippleAnimate .5s forwards;
+}
+
+
+@keyframes rippleAnimate {
+  0% {
+    width: 0;
+    height: 0;
+  }
+
+  100% {
+    width: 300%;
+    height: 300%;
+  }
+  
 }
