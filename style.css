@@ -201,8 +201,7 @@ html {
 
 
 .main__circle img {
-  mix-blend-mode: color-dodge;
-
+  mix-blend-mode: luminosity;
   top: 0;
   left: 0;
   position: relative;
