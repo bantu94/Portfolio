@@ -64,11 +64,12 @@ document.body.addEventListener("mouseleave", () => {
 })
 
 // Main Button 
-const mainBtn = document.querySelector('.main__btn')
+const mainBtns = document.querySelectorAll('.main__btn')
 
-let ripple;
+mainBtns.forEach((btn) => {
+  let ripple;
 
-mainBtn.addEventListener('mouseenter',(e) => {
+  btn.addEventListener('mouseenter',(e) => {
   const left = e.clientX - e.target.getBoundingClientRect().left;
   const top = e.clientY - e.target.getBoundingClientRect().top;
 
@@ -76,11 +77,48 @@ mainBtn.addEventListener('mouseenter',(e) => {
   ripple.classList.add("ripple");
   ripple.style.left = `${left}px`;
   ripple.style.top = `${top}px`;
-  mainBtn.prepend(ripple);
+  btn.prepend(ripple);
+  
+  });
+  
+  btn.addEventListener('mouseleave', () => {
+    btn.removeChild(ripple);
+  })
+
+})
+
+
+
+// End Main Button 
+
+
+
+// About me Text 
+const aboutMeText = document.querySelector('.aboutme__text');
+const aboutMeTextContent = "Iam a designer & I create award winning webistes with the best user experience & I do not talk much just contact me.";
+
+Array.from(aboutMeTextContent).forEach((char) => {
+  const span = document.createElement("span");
+  span.textContent = char;
+  aboutMeText.appendChild(span);
+
+  span.addEventListener('mouseenter', (e) => {
+    e.target.style.animation = "AboutMeTextAnimation 10s infinite"
+  });
+});
+// end of About me Text 
+
+// Projects
+const projects = document.querySelectorAll('.project');
+
+projects.forEach((project) => {
+  project.addEventListener('mouseenter', () => {
+    project.firstElementChild.style.top = `-${project.firstElementChild.offsetHeight - project.offsetHeight + 20}px`
+  });
+
+  project.addEventListener('mouseleave', () => {
+    project.firstElementChild.style.top = "2rem"
+  });
 
 });
-
-mainBtn.addEventListener('mouseleave', () => {
-  mainBtn.removeChild(ripple);
-})
-// End Main Button 
+// End of Projects
