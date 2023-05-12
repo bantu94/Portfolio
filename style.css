@@ -398,7 +398,8 @@ html {
 .section__3 {
   width: 100%;
   height: 100%;
-  padding: 20rem 0 10rem 0;
+  padding: 10rem 0;
+  margin-top: 10rem;
   position: relative;
 
 }
@@ -477,6 +478,73 @@ html {
     transform: rotateY(0);
   }
   
+}
+
+.project__img_wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+
+  overflow: hidden scroll;
+
+  animation: imgWrapperAnimate 1s forwards;
+
+}
+
+@keyframes imgWrapperAnimate {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+  
+}
+
+.project__img {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 7rem 20rem;
+  opacity: 0.9;
+
+  transform-origin: top center;
+
+  animation: imgAnimate 1s 1s both;
+}
+
+@keyframes imgAnimate {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+  
+}
+
+.project__hide_btn {
+  position: fixed;
+  top: 5rem;
+  right: 5rem;
+  background-color: transparent;
+  border: none;
+  color: var(--color-white);
+  font-size: 2rem;
+  letter-spacing: .1rem;
+  cursor: pointer;
+  z-index: 10;
+  transform: scale(0);
+  visibility: hidden;
+
+}
+
+.change.project__hide_btn {
+  transform: scale(1);
+  visibility: visible;
+  transition: transform 0.5s;
 }
 
 /* =================== End of section 3 ============================= */
