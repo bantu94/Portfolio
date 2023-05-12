@@ -32,6 +32,7 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 /* main__btn */
@@ -125,6 +126,21 @@ html {
   
 }
 /* End .main__btn */
+
+.section__heading {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--color-white);
+  text-transform: uppercase;
+
+  position: absolute;
+  top: 50%;
+  left: 10rem;
+  transform: translate(-50%);
+  width: 0;
+  word-break: break-all;
+  line-height: 5rem;
+}
 
 
 
@@ -369,20 +385,6 @@ html {
 
 /* =========== Section 2  ==================================== */
 
-.section__2-heading {
-  font-size: 2rem;
-  font-weight: 300;
-  color: var(--color-white);
-  text-transform: uppercase;
-
-  position: absolute;
-  top: 50%;
-  left: 10rem;
-  transform: translate(-50%);
-  width: 0;
-  word-break: break-all;
-  line-height: 4rem;
-}
 
 .section__2 .main__btn {
   left: 50%;
@@ -424,6 +426,7 @@ html {
   cursor: pointer;
 
   perspective: 20rem;
+  transition: opacity .5s;
 }
 
 .project img {
@@ -546,5 +549,28 @@ html {
   visibility: visible;
   transition: transform 0.5s;
 }
+
+.projects__btn {
+  left: 50%;
+  /* transform: translateX(-50%); */
+  transform: rotate(45deg);
+
+}
+
+.projects__btn .main__btn-line {
+  transition: all .5s;
+}
+
+.change > .main__btn-line:nth-child(1) {
+  transform: rotateZ(45deg) translateX(-0.65rem);
+}
+.change > .main__btn-line:nth-child(2) {
+  transform: rotateZ(-45deg) translateX(0.65rem);
+}
+/* .change > .main__btn-line:nth-child(3) {
+  transform: rotateZ(90deg) translateX(-0.5rem);
+  border-left: 0.1rem solid #fff;
+  border-right: none;
+} */
 
 /* =================== End of section 3 ============================= */
