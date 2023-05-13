@@ -216,3 +216,29 @@ document.querySelectorAll(".service__btn").forEach((service) => {
   })
 })
 // End  of Section 4
+
+// Section 5
+
+const formHeading = document.querySelector(".form__heading");
+const formInputs = document.querySelectorAll(".contact__form_input");
+
+formInputs.forEach((input) => {
+  input.addEventListener("focus", () => {
+    formHeading.style.opacity = "0"
+    setTimeout(() => {
+      formHeading.textContent = `Your ${input.placeholder}`;
+      formHeading.style.opacity = "1"
+    }, 300);
+  });
+
+  input.addEventListener("blur", () => {
+    formHeading.style.opacity = "0"
+    setTimeout(() => {
+      formHeading.textContent = "Let's Talk";
+      formHeading.style.opacity = "1"
+    }, 300);
+  });
+
+});
+
+// End  of Section 5

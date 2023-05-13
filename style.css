@@ -134,7 +134,7 @@ html {
   text-transform: uppercase;
 
   position: absolute;
-  top: 50%;
+  top: 33%;
   left: 10rem;
   transform: translate(-50%);
   width: 0;
@@ -632,3 +632,55 @@ html {
   transition: height .5s, opacity .5s .5s;
 }
 /* =================== End of section 4 ============================= */
+
+
+/* =================== section 5 ============================= */
+.section__5 {
+  position: relative;
+  height: 150vh;
+}
+
+.form__heading {
+  font-family: "Poppins",sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  color: var(--background-color);
+  letter-spacing: .3s;
+  margin-bottom: 3rem;
+  transition: opacity 0.3s;
+}
+
+.contact__form {
+  flex-direction: column;
+}
+
+.contact__form_input {
+  width: 60rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: rgba(255,255,255,0.1);
+  border: 0.1rem solid var(--background-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-span-text);
+  letter-spacing: .1rem;
+  height: 5rem;
+
+}
+
+.contact__form_textarea {
+  height: 20rem;
+  resize: none;
+}
+
+.form__submit_btn {
+  width: 20rem;
+  height: 5rem;
+  background-color: var(--background-color);
+  border: none;
+  columns: var(--color-white);
+  font-size: 1.8rem;
+  align-self: flex-start;
+}
+
+/* =================== End of section 5 ============================= */
