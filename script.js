@@ -85,11 +85,30 @@ mainBtns.forEach((btn) => {
     btn.removeChild(ripple);
   })
 
-})
-
-
+});
 
 // End Main Button 
+
+
+//  Navigation 
+const menuIcon = document.querySelector(".menu__icon");
+const navbar = document.querySelector(".navbar");
+
+document.addEventListener("scroll", () => {
+  menuIcon.classList.add("show__menu__icon");
+  navbar.classList.add("hide__navbar");
+
+  if(window.scrollY === 0) {
+    menuIcon.classList.remove("show__menu__icon");
+    navbar.classList.remove("hide__navbar");
+  }
+});
+
+menuIcon.addEventListener("click", () => {
+  menuIcon.classList.remove("show__menu__icon");
+  navbar.classList.remove("hide__navbar");
+});
+// End Navigation 
 
 
 

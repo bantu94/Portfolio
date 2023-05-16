@@ -341,6 +341,66 @@ html {
 }
 
 
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 3rem;
+  z-index: 100;
+  
+  transition: opacity .6s, visibility .6s, transform .6s;
+
+}
+
+.hide__navbar {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10rem);
+}
+
+.navbar__link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin:  0 2.5rem;
+  text-shadow: 0 0.3rem 0.5rem #000;
+}
+
+.menu__icon {
+  position: fixed;
+  width: 12rem;
+  height: 7rem;
+  top: 0;
+  right: 5rem;
+  flex-direction: column;
+
+  z-index: 100;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+
+  transform: opacity .3s;
+}
+
+.show__menu__icon {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu__icon_line {
+  width: 3rem;
+  height: 0.2rem;
+  background-color: var(--color-white);
+  margin: 0.5rem 0;
+  box-shadow: 0 0.3rem 0.5rem #000;
+}
+
+/* End of Navigation */
+
 
 .section__2 {
 
