@@ -94,7 +94,7 @@ mainBtns.forEach((btn) => {
 const menuIcon = document.querySelector(".menu__icon");
 const navbar = document.querySelector(".navbar");
 
-document.addEventListener("scroll", () => {
+const scrollFunc = () => {
   menuIcon.classList.add("show__menu__icon");
   navbar.classList.add("hide__navbar");
 
@@ -104,8 +104,9 @@ document.addEventListener("scroll", () => {
   }
 
   progressBarFunc();
+}
 
-});
+document.addEventListener("scroll", scrollFunc);
 
 menuIcon.addEventListener("click", () => {
   menuIcon.classList.remove("show__menu__icon");
@@ -120,17 +121,21 @@ const halfCircles = document.querySelectorAll(".half__circle");
 const halfCircleTop = document.querySelector(".half__circle_top");
 const progressBarCircle = document.querySelector(".progress__bar_circle");
 
-const progressBarFunc = (bigImgWrapper = false) => {
+let scrolledPortion = 0;
+let scrollBool = false;
+let imageWrapper = false;
+
+const progressBarFunc = (bigImgWrapper) => {
+  imageWrapper = bigImgWrapper;
 
   let pageHeight = 0;
-  let scrolledPortion = 0;
 
-  if (!bigImgWrapper) {
+  if (!imageWrapper) {
     pageHeight = document.documentElement.scrollHeight;
     scrolledPortion = window.scrollY;
   } else {
-    pageHeight = bigImgWrapper.firstElementChild.scrollHeight;
-    scrolledPortion = bigImgWrapper.scrollTop;
+    pageHeight = imageWrapper.firstElementChild.scrollHeight;
+    scrolledPortion = imageWrapper.scrollTop;
   }
 
   const pageViewPortHeight = window.innerHeight
@@ -149,27 +154,8 @@ const progressBarFunc = (bigImgWrapper = false) => {
 
   });
 
-  const scrollBool = scrolledPortion + pageViewPortHeight === pageHeight;
-  // on click progress 
-  progressBar.onclick = (e) => {
-    e.preventDefault()
+  scrollBool = scrolledPortion + pageViewPortHeight === pageHeight;
 
-    if (!bigImgWrapper) {
-      const sectionPositions = Array.from(sections).map((section) => scrolledPortion + section.getBoundingClientRect().top
-      );
-  
-      const position = sectionPositions.find((sectionPosition) => {
-        return sectionPosition > scrolledPortion
-      });
-  
-      scrollBool ? window.scrollTo(0, 0) : window.scrollTo(0, position);
-      
-    } else {
-      scrollBool ? bigImgWrapper.scrollTo(0, 0) : bigImgWrapper.scrollTo(0, bigImgWrapper.scrollHeight)
-    }
-
-  };
-  // End on click progress 
 
 
   // Arrow rotation 
@@ -182,6 +168,28 @@ const progressBarFunc = (bigImgWrapper = false) => {
 
 
 };
+
+// on click progress 
+progressBar.addEventListener("click", e => {
+  e.preventDefault()
+
+  if (!imageWrapper) {
+    const sectionPositions = Array.from(sections).map((section) => scrolledPortion + section.getBoundingClientRect().top
+    );
+
+    const position = sectionPositions.find((sectionPosition) => {
+      return sectionPosition > scrolledPortion
+    });
+
+    scrollBool ? window.scrollTo(0, 0) : window.scrollTo(0, position);
+    
+  } else {
+    scrollBool ? imageWrapper.scrollTo(0, 0) : imageWrapper.scrollTo(0, imageWrapper.scrollHeight)
+  }
+
+});
+// End on click progress 
+
 
 progressBarFunc();
 
@@ -232,6 +240,8 @@ projects.forEach((project, i) => {
 
     document.body.style.overflowY = "hidden";
 
+    document.removeEventListener("scroll", scrollFunc);
+
     // call progressBar function 
     progressBarFunc(bigImgWrapper);
     bigImgWrapper.onscroll = () => {
@@ -243,6 +253,8 @@ projects.forEach((project, i) => {
       projectHideBtn.classList.remove("change")
       bigImgWrapper.remove()
       document.body.style.overflowY = "scroll";
+
+      document.removeEventListener("scroll", scrollFunc);
 
       progressBarFunc();
 
