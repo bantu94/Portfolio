@@ -114,14 +114,26 @@ menuIcon.addEventListener("click", () => {
 // End Navigation 
 
 // Progress Bar 
+const progressBar = document.querySelector(".progress__bar");
+const sections = document.querySelectorAll("section");
 const halfCircles = document.querySelectorAll(".half__circle");
 const halfCircleTop = document.querySelector(".half__circle_top");
 const progressBarCircle = document.querySelector(".progress__bar_circle");
 
-const progressBarFunc = () => {
+const progressBarFunc = (bigImgWrapper = false) => {
+
+  let pageHeight = 0;
+  let scrolledPortion = 0;
+
+  if (!bigImgWrapper) {
+    pageHeight = document.documentElement.scrollHeight;
+    scrolledPortion = window.scrollY;
+  } else {
+    pageHeight = bigImgWrapper.firstElementChild.scrollHeight;
+    scrolledPortion = bigImgWrapper.scrollTop;
+  }
+
   const pageViewPortHeight = window.innerHeight
-  const pageHeight = document.documentElement.scrollHeight
-  const scrolledPortion = window.scrollY
 
   const scrolledPortionDegree = (scrolledPortion / (pageHeight - pageViewPortHeight)) * 360
   
@@ -135,9 +147,43 @@ const progressBarFunc = () => {
       halfCircleTop.style.opacity = "1";
     }
 
-  })
+  });
 
-}
+  const scrollBool = scrolledPortion + pageViewPortHeight === pageHeight;
+  // on click progress 
+  progressBar.onclick = (e) => {
+    e.preventDefault()
+
+    if (!bigImgWrapper) {
+      const sectionPositions = Array.from(sections).map((section) => scrolledPortion + section.getBoundingClientRect().top
+      );
+  
+      const position = sectionPositions.find((sectionPosition) => {
+        return sectionPosition > scrolledPortion
+      });
+  
+      scrollBool ? window.scrollTo(0, 0) : window.scrollTo(0, position);
+      
+    } else {
+      scrollBool ? bigImgWrapper.scrollTo(0, 0) : bigImgWrapper.scrollTo(0, bigImgWrapper.scrollHeight)
+    }
+
+  };
+  // End on click progress 
+
+
+  // Arrow rotation 
+  if(scrollBool) {
+    progressBarCircle.style.transform = "rotate(180deg)";
+  } else {
+    progressBarCircle.style.transform = "rotate(0)";
+  }
+  // End Arrow rotation 
+
+
+};
+
+progressBarFunc();
 
 // End of Progress Bar 
 
@@ -186,11 +232,20 @@ projects.forEach((project, i) => {
 
     document.body.style.overflowY = "hidden";
 
+    // call progressBar function 
+    progressBarFunc(bigImgWrapper);
+    bigImgWrapper.onscroll = () => {
+      progressBarFunc(bigImgWrapper);
+    }
+
     projectHideBtn.classList.add("change")
     projectHideBtn.onclick = () => {
       projectHideBtn.classList.remove("change")
       bigImgWrapper.remove()
       document.body.style.overflowY = "scroll";
+
+      progressBarFunc();
+
     }
 
 
