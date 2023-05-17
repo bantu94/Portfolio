@@ -11,6 +11,9 @@
   --background-color: #9b0e0e;
   --color-white: #fff;
   --color-span-text: #aaa;
+  --color-green: #006400;
+  --color-blue: #0b0888;
+  --color-orange: #ff8000;
 }
 
 .center {
@@ -339,6 +342,75 @@ html {
 .featured__text-2 {
   margin: 0 10rem 0 auto;
 }
+
+/* Progress bar  */
+.progress__bar {
+  position: fixed;
+  width: 6rem;
+  height: 6rem;
+  background-color: var(--color-white);
+
+  bottom: 3rem;
+  right: 8rem;
+  border-radius: 50%;
+
+  z-index: 200;
+  overflow: hidden;
+
+}
+
+.progress__bar_circle {
+  width: 5.5rem;
+  height: 5.5rem;
+  background-color: #000;
+  border-radius: 50%;
+  color: var(--color-white);
+  font-size: 3rem;
+  z-index: 200;
+}
+
+/* .progress__bar:hover .half__circle:nth-child(1) {
+  transform: rotate(180deg);
+  transition: transform 1s linear;
+}
+
+.progress__bar:hover .half__circle:nth-child(2) {
+  transform: rotate(360deg);
+  transition: transform 2s linear;
+}
+
+.progress__bar:hover .half__circle_top {
+  opacity: 0;
+  transition: opacity 0s 1s;
+}
+ */
+
+
+.half__circle,
+.half__circle_top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+
+  transform-origin: right center;
+}
+
+.half__circle:nth-child(1) {
+  background-color: var(--background-color);
+}
+
+.half__circle:nth-child(2) {
+  background-color: var(--background-color);
+}
+
+.half__circle_top {
+  background-color: var(--color-white);
+}
+
+
+/* End of Progress bar  */
 
 
 /* Navigation */

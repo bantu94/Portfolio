@@ -102,6 +102,9 @@ document.addEventListener("scroll", () => {
     menuIcon.classList.remove("show__menu__icon");
     navbar.classList.remove("hide__navbar");
   }
+
+  progressBarFunc();
+
 });
 
 menuIcon.addEventListener("click", () => {
@@ -109,6 +112,34 @@ menuIcon.addEventListener("click", () => {
   navbar.classList.remove("hide__navbar");
 });
 // End Navigation 
+
+// Progress Bar 
+const halfCircles = document.querySelectorAll(".half__circle");
+const halfCircleTop = document.querySelector(".half__circle_top");
+const progressBarCircle = document.querySelector(".progress__bar_circle");
+
+const progressBarFunc = () => {
+  const pageViewPortHeight = window.innerHeight
+  const pageHeight = document.documentElement.scrollHeight
+  const scrolledPortion = window.scrollY
+
+  const scrolledPortionDegree = (scrolledPortion / (pageHeight - pageViewPortHeight)) * 360
+  
+  halfCircles.forEach((el) => {
+    el.style.transform = `rotate(${scrolledPortionDegree}deg)`;
+
+    if(scrolledPortionDegree >= 180) {
+      halfCircles[0].style.transform = "rotate(180deg)";
+      halfCircleTop.style.opacity = "0";
+    } else {
+      halfCircleTop.style.opacity = "1";
+    }
+
+  })
+
+}
+
+// End of Progress Bar 
 
 
 
