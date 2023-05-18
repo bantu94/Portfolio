@@ -350,13 +350,13 @@ html {
   height: 6rem;
   background-color: var(--color-white);
 
-  bottom: 3rem;
-  right: 8rem;
+  bottom: 1.8rem;
+  right: 4rem;
   border-radius: 50%;
 
   z-index: 200;
   overflow: hidden;
-
+  transform: translate(-50%, -50%);
 }
 
 .progress__bar_circle {
@@ -369,6 +369,7 @@ html {
   z-index: 200;
 
   transition: transform 0.5s;
+  pointer-events: none;
 }
 
 /* .progress__bar:hover .half__circle:nth-child(1) {
@@ -397,6 +398,7 @@ html {
   height: 100%;
 
   transform-origin: right center;
+  pointer-events: none;
 }
 
 .half__circle:nth-child(1) {
@@ -448,8 +450,8 @@ html {
   position: fixed;
   width: 12rem;
   height: 7rem;
-  top: 0;
-  right: 5rem;
+  top: 3.5rem;
+  right: -1.5rem;
   flex-direction: column;
 
   z-index: 100;
@@ -458,6 +460,7 @@ html {
   visibility: hidden;
 
   transform: opacity .3s;
+  transform: translate(-50%, -50%);
 }
 
 .show__menu__icon {

@@ -48,6 +48,35 @@ const animateCircles = (e,x,y) => {
 }
 // end Animating circles 
 
+let hoveredElementPosition = [];
+
+const stickyElement = (x,y,hoveredElement) => {
+  
+  // sticky elements 
+  if (hoveredElement.classList.contains("sticky")) {
+    hoveredElementPosition.length < 1 &&
+      (hoveredElementPosition = [hoveredElement.offsetTop, hoveredElement.offsetLeft]);
+
+    hoveredElement.style.cssText = `top: ${y}px; left: ${x}px;`
+
+    if (hoveredElement.offsetTop <= hoveredElementPosition[0] - 100 
+      || hoveredElement.offsetTop >= hoveredElementPosition[0] + 100 
+      || hoveredElement.offsetLeft <= hoveredElementPosition[1] - 100 
+      || hoveredElement.offsetLeft >= hoveredElementPosition[1] + 100) {
+      hoveredElement.style.cssText = "";
+      hoveredElementPosition = [];
+    }
+
+    hoveredElement.onmouseleave = () => {
+      hoveredElement.style.cssText = "";
+      hoveredElementPosition = [];
+    }
+
+  }
+  // end of sticky elements 
+
+  
+};
 
 document.body.addEventListener('mousemove', (e) => {
   let x = e.clientX;
@@ -56,7 +85,10 @@ document.body.addEventListener('mousemove', (e) => {
   mouseCircleFn(x,y)
   animateCircles(e,x,y)
 
-})
+  const hoveredElement = document.elementFromPoint(x,y);
+  stickyElement(x,y,hoveredElement);
+
+});
 
 document.body.addEventListener("mouseleave", () => {
   mouseCircle.style.opacity = '0'
@@ -189,7 +221,6 @@ progressBar.addEventListener("click", e => {
 
 });
 // End on click progress 
-
 
 progressBarFunc();
 
