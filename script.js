@@ -3,8 +3,13 @@
 const mouseCircle = document.querySelector(".mouse__circle")
 const mouseDot = document.querySelector(".mouse__dot")
 
+let mouseCircleBool = true;
+
 const mouseCircleFn = (x,y) => {
-  mouseCircle.style.cssText = `top: ${y}px;left: ${x}px; opacity: 1;`
+
+  mouseCircleBool &&
+    (mouseCircle.style.cssText = `top: ${y}px;left: ${x}px; opacity: 1;`)
+
   mouseDot.style.cssText = `top: ${y}px;left: ${x}px; opacity: 1;`
 }
 
@@ -74,9 +79,44 @@ const stickyElement = (x,y,hoveredElement) => {
 
   }
   // end of sticky elements 
-
-  
 };
+
+// Mouse circle transform 
+const mouseCircleTransform = (hoveredElement) => {
+
+  if (hoveredElement.classList.contains("pointer_enter")) {
+    hoveredElement.onmousemove = () => {
+
+      mouseCircleBool = false;
+
+      mouseCircle.style.cssText = `
+      width: ${hoveredElement.getBoundingClientRect().width}px;
+      height: ${hoveredElement.getBoundingClientRect().height}px;
+      top: ${hoveredElement.getBoundingClientRect().top}px;
+      left: ${hoveredElement.getBoundingClientRect().left}px;
+      opacity: 1;
+      transform: translate(0,0);
+      animation: none;
+      border-radius: ${getComputedStyle(hoveredElement).borderBottomLeftRadius};
+      transition: width .5s, height .5s, top .5s, left .5s, transform .5s, 
+      border-radius .5s;
+      `;
+    };
+
+    hoveredElement.onmouseleave = () => {
+      mouseCircleBool = true;
+    };
+
+    document.onscroll = () => {
+      if (!mouseCircleBool) {
+        mouseCircle.style.top = `${hoveredElement.getBoundingClientRect().top}px`
+      }
+    }
+
+  }
+
+}
+// End of Mouse circle transform 
 
 document.body.addEventListener('mousemove', (e) => {
   let x = e.clientX;
@@ -87,6 +127,7 @@ document.body.addEventListener('mousemove', (e) => {
 
   const hoveredElement = document.elementFromPoint(x,y);
   stickyElement(x,y,hoveredElement);
+  mouseCircleTransform(hoveredElement);
 
 });
 
@@ -272,6 +313,8 @@ projects.forEach((project, i) => {
     document.body.style.overflowY = "hidden";
 
     document.removeEventListener("scroll", scrollFunc);
+
+    mouseCircle.style.opacity = 0
 
     // call progressBar function 
     progressBarFunc(bigImgWrapper);

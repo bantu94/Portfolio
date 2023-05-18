@@ -575,6 +575,7 @@ html {
   opacity: 0.5;
 
   transition: top 4s 0.2s, opacity 0.2s;
+  pointer-events: none;
 }
 
 .project:nth-child(odd):hover img {
@@ -748,6 +749,8 @@ html {
   position: absolute;
   right: 0;
   transition: right .5s;
+
+  pointer-events: none;
 }
 
 .service__text {
